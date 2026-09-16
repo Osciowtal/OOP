@@ -15,11 +15,14 @@ public class HeapSort {
      * 2. Take out all root elems one-by-one (swap them with last elem of processing arr).
      * siftDown after each retrieve to get a heap sorted again - it takes O(n log n).
      * Final asymptotics = O(n + n log n) = O(n log n).
+     *
      * @param array of integers to be sorted
      * @return the same array sorted in ascending order
      */
     public static int[] sort(int[] array) {
-        if (array == null) return null;
+        if (array == null) {
+            return null;
+        }
 
         int num = array.length;
         for (int parent = num / 2 - 1; parent >= 0; parent--) {
@@ -30,6 +33,7 @@ public class HeapSort {
             swap(array, 0, end);
             siftDown(array, end, 0);
         }
+
         return array;
     }
 
@@ -45,9 +49,15 @@ public class HeapSort {
             int leftChild = i * 2 + 1;
             int rightChild = i * 2 + 2;
 
-            if ((leftChild < num) && (arr[leftChild] > arr[max])) max = leftChild;
-            if ((rightChild) < num && (arr[rightChild] > arr[max])) max = rightChild;
-            if (max == i) {return;}
+            if ((leftChild < num) && (arr[leftChild] > arr[max])) {
+                max = leftChild;
+            }
+            if ((rightChild) < num && (arr[rightChild] > arr[max])) {
+                max = rightChild;
+            }
+            if (max == i) {
+                return;
+            }
 
             swap(arr, max, i);
             i = max;

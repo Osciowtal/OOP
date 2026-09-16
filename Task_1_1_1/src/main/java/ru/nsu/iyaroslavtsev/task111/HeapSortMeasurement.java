@@ -2,7 +2,14 @@ package ru.nsu.iyaroslavtsev.task111;
 
 import java.util.Random;
 
+/**
+ * Class for asymptotics measurement.
+ */
 public class HeapSortMeasurement {
+    /**
+     * Generates random arrays with different amount of elems (From 100 up to 1_000_000).
+     * Measures the sort time and calculates the (durat / n log n) value for comparison.
+     */
     public static void main(String[] args) {
         int[] sizes = {100, 10_000, 20_000, 100_000, 200_000, 1_000_000};
         System.out.println("Size (N) | Time (nanosec) | N log N        | Constant");
@@ -24,7 +31,11 @@ public class HeapSortMeasurement {
     private static int[] randArr(int size) {
         Random randomer = new Random();
         int[] arr = new int[size];
-        for (int i = 0; i < size; i++) arr[i] = randomer.nextInt();
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = randomer.nextInt();
+        }
+
         return arr;
     }
 }
