@@ -1,4 +1,4 @@
-package ru.nsu.iyaroslavtsev.Task_1_1_1;
+package ru.nsu.iyaroslavtsev.task111;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +38,7 @@ class HeapSortTest {
     void testNull() {
         assertNull(HeapSort.sort(null));
     }
+
     @Test
     void edgeValsTest() {
         int[] edgeArr = {Integer.MAX_VALUE,56,32,1,1,Integer.MIN_VALUE,0,-20};
