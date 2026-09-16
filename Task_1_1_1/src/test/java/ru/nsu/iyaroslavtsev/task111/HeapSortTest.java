@@ -1,9 +1,9 @@
 package ru.nsu.iyaroslavtsev.task111;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 
 class HeapSortTest {
 
@@ -47,8 +47,8 @@ class HeapSortTest {
 
     @Test
     void edgeValsTest() {
-        int[] edgeArr = {Integer.MAX_VALUE,56,32,1,1,Integer.MIN_VALUE,0,-20};
-        int[] expected = {Integer.MIN_VALUE,-20,0,1,1,32,56,Integer.MAX_VALUE};
+        int[] edgeArr = {Integer.MAX_VALUE, 56, 32, 1, 1, Integer.MIN_VALUE, 0, -20};
+        int[] expected = {Integer.MIN_VALUE, -20, 0, 1, 1, 32, 56, Integer.MAX_VALUE};
         assertArrayEquals(expected, HeapSort.sort(edgeArr));
     }
 }
