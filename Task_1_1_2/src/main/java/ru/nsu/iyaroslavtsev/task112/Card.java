@@ -8,7 +8,8 @@ public class Card {
     private final Rank rank;
 
     /**
-     * Card
+     * Card.
+     *
      * @param suit - suit
      * @param rank - rank
      */
@@ -23,6 +24,7 @@ public class Card {
 
     /**
      * showCard() function that returns a full name.
+     *
      * @return like "Queen of Spades [Q ♠]" - name + pic.
      */
     public String showCard() {
@@ -36,6 +38,7 @@ public class Card {
 
     /**
      * And another one that do only pseudo pic part "[Q ♠]".
+     *
      * @return little char pic.
      */
     public String showPseudoPic() {

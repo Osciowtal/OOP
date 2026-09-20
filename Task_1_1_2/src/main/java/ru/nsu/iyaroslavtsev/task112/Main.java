@@ -7,14 +7,18 @@ import java.util.Scanner;
  */
 public class Main {
     private static int round = 0;
-    private static int pwins = 0, dwins = 0;
+    private static int pwins = 0;
+    private static int dwins = 0;
     private static Hand player;
     private static Hand dealer;
 
+    /**
+     * Round info.
+     */
     public static void endMessage() {
-        System.out.printf("\n       You  | Dealer" +
-                          "\nScore: %-4d | %-4d" +
-                          "\nWins:  %-4d | %-4d",
+        System.out.printf("\n       You  | Dealer"
+                        + "\nScore: %-4d | %-4d"
+                        + "\nWins:  %-4d | %-4d",
                 player.getScore(), dealer.getScore(),
                 pwins, dwins);
     }

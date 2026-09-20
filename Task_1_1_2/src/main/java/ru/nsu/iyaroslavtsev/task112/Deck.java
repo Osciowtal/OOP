@@ -28,6 +28,7 @@ public class Deck {
 
     /**
      * throwCard() function always check if deck is empty and if so it automatically rebuild a deck.
+     *
      * @return random card from a deck.
      */
     public Card throwCard() {
@@ -50,6 +51,7 @@ public class Deck {
 
     /**
      * getCards() function just returns a list of cards.
+     *
      * @return cards.
      */
     public List<Card> getCards() {
