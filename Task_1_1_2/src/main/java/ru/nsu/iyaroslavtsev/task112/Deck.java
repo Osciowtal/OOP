@@ -25,7 +25,7 @@ public class Deck {
             cards.shuffle();
             System.out.println("Done.");
         }
-        return cards.removeLast();
+        return cards.remove(cards.size() - 1);
     }
 
     public void shuffle() {

@@ -75,7 +75,7 @@ public class Main {
                 } else if (action == 1) {
                     player.takeCard(deck.throwCard());
                     System.out.printf("\nYou have got: %s",
-                            player.getCards().getLast().showCard());
+                            player.getCards().get(player.getCards().size() - 1).showCard());
                     player.dispplayCards();
                 } else if (action == 2) {
                     System.out.printf("\nLets see...");
@@ -93,7 +93,7 @@ public class Main {
                 while (dealer.getScore() < 17) {
                     dealer.takeCard(deck.throwCard());
                     System.out.printf("\nDealer has got: %s",
-                            dealer.getCards().getLast().showCard());
+                            dealer.getCards().get(dealer.getCards().size() - 1).showCard());
                     dealer.dispplayCards();
 
                     if (dealer.getScore() > 21) {
