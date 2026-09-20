@@ -76,6 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Hand</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Hand class for Dealer and Player.
+ List of received cards, username, score and amount of aces.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,10 +107,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dealerCards()" class="member-name-link">dealerCards</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">dealerCards() does the same as displayCards(), but second card is hidden.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dispplayCards()" class="member-name-link">dispplayCards</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">displayCards() displays cards.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAces()" class="member-name-link">getAces</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -120,7 +126,9 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#takeCard(ru.nsu.iyaroslavtsev.task112.Card)" class="member-name-link">takeCard</a><wbr>(<a href="Card.html" title="class in ru.nsu.iyaroslavtsev.task112">Card</a>&nbsp;card)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">takeCard() function for getting a card and calculating a score depending on points and aces.</div>
+</div>
 </div>
 </div>
 </div>
@@ -156,6 +164,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="takeCard(ru.nsu.iyaroslavtsev.task112.Card)">
 <h3>takeCard</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">takeCard</span><wbr><span class="parameters">(<a href="Card.html" title="class in ru.nsu.iyaroslavtsev.task112">Card</a>&nbsp;card)</span></div>
+<div class="block">takeCard() function for getting a card and calculating a score depending on points and aces.
+ If there are any taken aces and score is more than 21,
+ aces' values collapse until score is less or eq to 21.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>card</code> - is a card.</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -180,12 +195,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="dispplayCards()">
 <h3>dispplayCards</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dispplayCards</span>()</div>
+<div class="block">displayCards() displays cards.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="dealerCards()">
 <h3>dealerCards</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dealerCards</span>()</div>
+<div class="block">dealerCards() does the same as displayCards(), but second card is hidden.</div>
 </section>
 </li>
 </ul>
