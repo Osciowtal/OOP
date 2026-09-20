@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test Card enum
+ */
 class CardTest {
     @Test
     void cardsTest() {

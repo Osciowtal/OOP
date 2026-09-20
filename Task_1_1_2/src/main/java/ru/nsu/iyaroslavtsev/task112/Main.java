@@ -2,6 +2,9 @@ package ru.nsu.iyaroslavtsev.task112;
 
 import java.util.Scanner;
 
+/**
+ * Main class that implements Blackjack itself.
+ */
 public class Main {
     private static int round = 0;
     private static int pwins = 0, dwins = 0;

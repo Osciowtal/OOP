@@ -1,5 +1,9 @@
 package ru.nsu.iyaroslavtsev.task112;
 
+/**
+ * enum that contains Suit info for cards.
+ * Name and little symbols for card representation (♠ ♥ ♦ ♣).
+ */
 public enum Suit {
     SPADES("Spades", "♠"),
     HEARTS("Hearts", "♥"),

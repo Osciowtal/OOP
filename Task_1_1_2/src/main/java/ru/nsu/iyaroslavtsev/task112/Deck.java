@@ -1,9 +1,17 @@
 package ru.nsu.iyaroslavtsev.task112;
 
-import java.util.Collections;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+/**
+ * Deck class to deal with deck.
+ * It has private static list of cards and methods.
+ * "Deck();" constructor builds up a new deck with 2 "for" by going through all Ranks and Suits.
+ * throwCard() function always check if deck is empty and if so it automatically rebuild a deck.
+ * Deck should stay random so there is a .shuffle() (taken from "java.util.Collections").
+ * getCards() function just returns a list of cards.
+ */
 public class Deck {
     private static List<Card> cards;
 

@@ -3,6 +3,14 @@ package ru.nsu.iyaroslavtsev.task112;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Hand class for Dealer and Player.
+ * List of received cards, username, score and amount of aces.
+ * takeCard() function for getting a card and calculating a score depending on points and aces.
+ * If there are any taken aces and score is > 21 aces' values collapse until score is <= 21.
+ * displayCards() displays cards.
+ * dealerCards() do the same, but second card is hidden.
+ */
 public class Hand {
     private List<Card> cards;
     private final String name;

@@ -1,5 +1,11 @@
 package ru.nsu.iyaroslavtsev.task112;
 
+/**
+ * enum that contains card Ranks' data.
+ * int value: how many points a card of this rank costs.
+ * String name: card name to display in console.
+ * String symb: short part to display as a card sign (like "Q" for Queen and "2" for Two).
+ */
 public enum Rank {
     TWO(2, "Two", "2"),
     THREE(3, "Three", "3"),
@@ -28,10 +34,13 @@ public enum Rank {
     public int getVal() {
         return value;
     }
+
     public String getName() {
         return name;
     }
+
     public String getSymb() {
         return symb;
     }
+
 }

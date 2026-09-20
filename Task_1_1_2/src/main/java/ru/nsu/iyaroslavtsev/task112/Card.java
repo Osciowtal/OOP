@@ -1,5 +1,10 @@
 package ru.nsu.iyaroslavtsev.task112;
 
+/**
+ * Card from Rank and Suit enums.
+ * Has function that returns a full name like "Queen of Spades [Q ♠]".
+ * And another one that do only pseudo pic part "[Q ♠]".
+ */
 public class Card {
     private final Suit suit;
     private final Rank rank;
