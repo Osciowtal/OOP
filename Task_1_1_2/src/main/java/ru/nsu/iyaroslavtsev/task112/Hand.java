@@ -6,10 +6,6 @@ import java.util.List;
 /**
  * Hand class for Dealer and Player.
  * List of received cards, username, score and amount of aces.
- * takeCard() function for getting a card and calculating a score depending on points and aces.
- * If there are any taken aces and score is > 21 aces' values collapse until score is <= 21.
- * displayCards() displays cards.
- * dealerCards() do the same, but second card is hidden.
  */
 public class Hand {
     private List<Card> cards;
@@ -24,6 +20,12 @@ public class Hand {
         this.aces = 0;
     }
 
+    /**
+     * takeCard() function for getting a card and calculating a score depending on points and aces.
+     * If there are any taken aces and score is more than 21,
+     * aces' values collapse until score is less or eq to 21.
+     * @param card is a card.
+     */
     public void takeCard(Card card) {
         if (card.getVal() == 11) {
             aces++;
@@ -50,6 +52,9 @@ public class Hand {
     }
 
 
+    /**
+     * displayCards() displays cards.
+     */
     public void dispplayCards() {
         System.out.printf("\n%s's cards: [ %d ]\n", name, score);
         for (Card c : cards) {
@@ -57,6 +62,9 @@ public class Hand {
         }
     }
 
+    /**
+     * dealerCards() does the same as displayCards(), but second card is hidden.
+     */
     public void dealerCards() {
         System.out.printf("\n%s's cards: [ %d + ? ]\n", name, cards.get(0).getVal());
         System.out.printf("%s  [hidden]", cards.get(0).showPseudoPic());

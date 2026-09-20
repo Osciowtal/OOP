@@ -6,15 +6,16 @@ import java.util.List;
 
 /**
  * Deck class to deal with deck.
- * It has private static list of cards and methods.
- * "Deck();" constructor builds up a new deck with 2 "for" by going through all Ranks and Suits.
- * throwCard() function always check if deck is empty and if so it automatically rebuild a deck.
- * Deck should stay random so there is a .shuffle() (taken from "java.util.Collections").
- * getCards() function just returns a list of cards.
  */
 public class Deck {
+    /**
+     * private static list of cards.
+     */
     private static List<Card> cards;
 
+    /**
+     * "Deck();" constructor builds up a new deck with 2 "for" by going through all Ranks and Suits.
+     */
     public Deck() {
         cards = new ArrayList<>();
         for (Suit s : Suit.values()) {
@@ -25,6 +26,10 @@ public class Deck {
         }
     }
 
+    /**
+     * throwCard() function always check if deck is empty and if so it automatically rebuild a deck.
+     * @return random card from a deck.
+     */
     public Card throwCard() {
         if (cards.isEmpty()) {
             System.out.println("\nDeck is empty - creating new one!");
@@ -36,10 +41,17 @@ public class Deck {
         return cards.remove(cards.size() - 1);
     }
 
+    /**
+     * Deck should stay random so there is a .shuffle() (taken from "java.util.Collections").
+     */
     public void shuffle() {
         Collections.shuffle(this.cards);
     }
 
+    /**
+     * getCards() function just returns a list of cards.
+     * @return cards.
+     */
     public List<Card> getCards() {
         return cards;
     }
