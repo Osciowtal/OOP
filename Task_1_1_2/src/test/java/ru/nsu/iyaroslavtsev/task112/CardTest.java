@@ -1,13 +1,17 @@
 package ru.nsu.iyaroslavtsev.task112;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 /**
- * Test Card enum
+ * Test Card enum.
  */
 class CardTest {
+
+    /**
+     * Testing value, name and pic of cards.
+     */
     @Test
     void cardsTest() {
         Card queenOfSpades = new Card(Suit.SPADES, Rank.QUEEN);

@@ -13,6 +13,11 @@ public class Hand {
     private int score;
     private int aces;
 
+    /**
+     * Initializes a Hand.
+     *
+     * @param user username.
+     */
     public Hand(String user) {
         this.cards = new ArrayList<>();
         this.name = user;
@@ -24,6 +29,7 @@ public class Hand {
      * takeCard() function for getting a card and calculating a score depending on points and aces.
      * If there are any taken aces and score is more than 21,
      * aces' values collapse until score is less or eq to 21.
+     *
      * @param card is a card.
      */
     public void takeCard(Card card) {
@@ -39,14 +45,29 @@ public class Hand {
         }
     }
 
+    /**
+     * Returns score.
+     *
+     * @return score.
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Returns list of cards.
+     *
+     * @return list of cards.
+     */
     public List<Card> getCards() {
         return cards;
     }
 
+    /**
+     * Returns amount of aces.
+     *
+     * @return amount of aces.
+     */
     public int getAces() {
         return aces;
     }

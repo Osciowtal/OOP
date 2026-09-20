@@ -1,18 +1,22 @@
 package ru.nsu.iyaroslavtsev.task112;
 
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test Deck
+ * Test Deck.
  */
 class DeckTest {
 
+    /**
+     * Deck initialization testing.
+     */
     @Test
     void testDeckInit() {
         Deck cards = new Deck();
@@ -22,6 +26,9 @@ class DeckTest {
         assertNotNull(cards.getCards().get(51));
     }
 
+    /**
+     * Card throwing testing.
+     */
     @Test
     void testThrowCard() {
         Deck cards = new Deck();
@@ -30,6 +37,9 @@ class DeckTest {
         assertEquals(13 * 4 - 1, cards.getCards().size());
     }
 
+    /**
+     * Shuffle testing.
+     */
     @Test
     void testShuffle() {
         Deck cards = new Deck();
@@ -40,6 +50,9 @@ class DeckTest {
         assertTrue(after.containsAll(before));
     }
 
+    /**
+     * Testing case if all cards are taken out - deck auto rebuild.
+     */
     @Test
     void testAutoRefill() {
         Deck cards = new Deck();

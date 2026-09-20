@@ -1,14 +1,18 @@
 package ru.nsu.iyaroslavtsev.task112;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+
 /**
- * Test Hand
+ * Test Hand.
  */
 class HandTest {
 
+    /**
+     * Points, size, aces of Hand counting.
+     */
     @Test
     void testSimpleTake() {
         Hand user = new Hand("user");
@@ -20,6 +24,9 @@ class HandTest {
         assertEquals(0, user.getAces());
     }
 
+    /**
+     * Testing saving rule - collapsing aces if score is over 21.
+     */
     @Test
     void testAceCollapse() {
         Hand user = new Hand("user");

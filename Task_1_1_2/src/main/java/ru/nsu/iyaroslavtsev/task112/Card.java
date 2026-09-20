@@ -18,6 +18,11 @@ public class Card {
         this.rank = rank;
     }
 
+    /**
+     * Returns a rank's value.
+     *
+     * @return value.
+     */
     public int getVal() {
         return rank.getVal();
     }
@@ -25,7 +30,7 @@ public class Card {
     /**
      * showCard() function that returns a full name.
      *
-     * @return like "Queen of Spades [Q ♠]" - name + pic.
+     * @return Name + pic like "Queen of Spades [Q ♠]".
      */
     public String showCard() {
         return String.format("%s of %s [%s %s]",

@@ -23,8 +23,12 @@ public class Main {
                 pwins, dwins);
     }
 
+    /**
+     * main.
+     *
+     * @param args args.
+     */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         Deck deck = new Deck();
         deck.shuffle();
 
@@ -73,6 +77,7 @@ public class Main {
                     break;
                 }
 
+                Scanner scanner = new Scanner(System.in);
                 System.out.printf("\n[1] Take. [2] Stop. [0] Exit.\n");
                 int action = scanner.nextInt();
                 if (action == 0) {
@@ -116,12 +121,12 @@ public class Main {
                 int dealerScore = dealer.getScore();
                 if (playerScore > dealerScore) {
                     dealerIsAlive = false;
-                    System.out.printf("\nYour score is greater that Dealer's one." +
-                            "\nYour victory!");
+                    System.out.printf("\nYour score is greater that Dealer's one."
+                                    + "\nYour victory!");
                 } else if (playerScore < dealerScore) {
                     playerIsAlive = false;
-                    System.out.printf("\nYour score is lower that Dealer's one." +
-                            "\nDealer's victory!");
+                    System.out.printf("\nYour score is lower that Dealer's one."
+                                    + "\nDealer's victory!");
                 } else {
                     System.out.printf("\nScores are equal: draw.");
                 }
@@ -134,6 +139,7 @@ public class Main {
             }
 
             endMessage();
+            Scanner scanner = new Scanner(System.in);
             System.out.printf("\nAnother round?\n[1] Yes. [0] No.\n");
             int action = scanner.nextInt();
             switch (action) {
@@ -142,6 +148,11 @@ public class Main {
                     return;
                 case 1:
                     round++;
+                    break;
+                default:
+                    System.out.printf("\nThere is no such option. Starting next game by default.");
+                    round++;
+                    break;
             }
         }
     }

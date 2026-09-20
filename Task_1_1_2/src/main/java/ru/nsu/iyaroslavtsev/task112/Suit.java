@@ -13,15 +13,30 @@ public enum Suit {
     private final String name;
     private final String symb;
 
+    /**
+     * Suit constructor.
+     *
+     * @param name name.
+     * @param symb symbol.
+     */
     Suit(String name, String symb) {
         this.name = name;
         this.symb = symb;
     }
 
+    /**
+     * Returns name.
+     * @return name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns symbol.
+     *
+     * @return symbol.
+     */
     public String getSymb() {
         return symb;
     }

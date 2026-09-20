@@ -1,14 +1,18 @@
 package ru.nsu.iyaroslavtsev.task112;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+
 /**
- * Test Rank enum
+ * Test Rank enum.
  */
 class RankTest {
 
+    /**
+     * Rank attributes (value, name, symbol).
+     */
     @Test
     void properAttributes() {
         for (Rank r : Rank.values()) {
@@ -38,6 +42,9 @@ class RankTest {
         }
     }
 
+    /**
+     * There should be 13 ranks: from 2 up to 10 (9) + 3 pics (J, Q, K) + 1 ace.
+     */
     @Test
     void rankAmount() {
         assertEquals(13, Rank.values().length);

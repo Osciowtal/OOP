@@ -1,14 +1,18 @@
 package ru.nsu.iyaroslavtsev.task112;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+
 /**
- * Test Suit enum
+ * Test Suit enum.
  */
 class SuitTest {
 
+    /**
+     * Suit attributes.
+     */
     @Test
     void properAttributes() {
         String expectName;
@@ -42,6 +46,9 @@ class SuitTest {
         }
     }
 
+    /**
+     * 4 suits.
+     */
     @Test
     void suitAmount() {
         assertEquals(4, Suit.values().length);

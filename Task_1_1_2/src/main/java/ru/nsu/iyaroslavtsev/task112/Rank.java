@@ -21,24 +21,55 @@ public enum Rank {
     KING(10, "King", "K"),
     ACE(11, "Ace", "A");
 
+    /**
+     * value.
+     */
     private final int value;
+    /**
+     * name.
+     */
     private final String name;
+    /**
+     * symb.
+     */
     private final String symb;
 
+    /**
+     * Rank constructor.
+     *
+     * @param value value.
+     * @param name name.
+     * @param symb symbol.
+     */
     private Rank(int value, String name, String symb) {
         this.value = value;
         this.name = name;
         this.symb = symb;
     }
 
+    /**
+     * Returns value.
+     *
+     * @return value.
+     */
     public int getVal() {
         return value;
     }
 
+    /**
+     * Returns name.
+     *
+     * @return name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns symbol.
+     *
+     * @return symbol.
+     */
     public String getSymb() {
         return symb;
     }
