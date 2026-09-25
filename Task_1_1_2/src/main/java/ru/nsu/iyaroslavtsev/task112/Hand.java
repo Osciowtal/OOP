@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Hand {
     private List<Card> cards;
-    private final String name;
+    public final String name;
     private int score;
     private int aces;
 
@@ -76,18 +76,20 @@ public class Hand {
     /**
      * displayCards() displays cards.
      */
-    public void dispplayCards() {
-        System.out.printf("\n%s's cards: [ %d ]\n", name, score);
+    public String dispplayCards() {
+        String res = String.format("\n%s's cards: [ %d ]\n", name, score);
         for (Card c : cards) {
-            System.out.printf("%s  ", c.showPseudoPic());
+            res += String.format("%s  ", c.pseudoPic());
         }
+        return res;
     }
 
     /**
      * dealerCards() does the same as displayCards(), but second card is hidden.
      */
-    public void dealerCards() {
-        System.out.printf("\n%s's cards: [ %d + ? ]\n", name, cards.get(0).getVal());
-        System.out.printf("%s  [hidden]", cards.get(0).showPseudoPic());
+    public String dealerCards() {
+        String res = String.format("\n%s's cards: [ %d + ? ]\n", name, cards.get(0).getVal());
+        res += String.format("%s  [hidden]", cards.get(0).pseudoPic());
+        return res;
     }
 }

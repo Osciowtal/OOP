@@ -32,12 +32,10 @@ public class Card {
      *
      * @return Name + pic like "Queen of Spades [Q ♠]".
      */
-    public String showCard() {
-        return String.format("%s of %s [%s %s]",
+    public String fullinfoCard() {
+        return String.format("%s of %s " + pseudoPic(),
                 rank.getName(),
-                suit.getName(),
-                rank.getSymb(),
-                suit.getSymb()
+                suit.getName()
         );
     }
 
@@ -46,7 +44,7 @@ public class Card {
      *
      * @return little char pic.
      */
-    public String showPseudoPic() {
+    public String pseudoPic() {
         return String.format("[%s %s]",
                 rank.getSymb(),
                 suit.getSymb()

@@ -26,17 +26,17 @@ class CardTest {
         String exp2 = "Two of Diamonds [2 ♦]";
         String exp3 = "Ace of Hearts [A ♥]";
 
-        assertEquals(exp1, queenOfSpades.showCard());
-        assertEquals(exp2, twoOfDiamonds.showCard());
-        assertEquals(exp3, aceOfHearts.showCard());
+        assertEquals(exp1, queenOfSpades.fullinfoCard());
+        assertEquals(exp2, twoOfDiamonds.fullinfoCard());
+        assertEquals(exp3, aceOfHearts.fullinfoCard());
 
         String pic1 = "[Q ♠]";
         String pic2 = "[2 ♦]";
         String pic3 = "[A ♥]";
 
-        assertEquals(pic1, queenOfSpades.showPseudoPic());
-        assertEquals(pic2, twoOfDiamonds.showPseudoPic());
-        assertEquals(pic3, aceOfHearts.showPseudoPic());
+        assertEquals(pic1, queenOfSpades.pseudoPic());
+        assertEquals(pic2, twoOfDiamonds.pseudoPic());
+        assertEquals(pic3, aceOfHearts.pseudoPic());
 
     }
 }
