@@ -3,6 +3,7 @@ package ru.nsu.iyaroslavtsev.task112;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static org.mockito.Mockito.mockConstruction;
@@ -17,7 +18,6 @@ import java.util.Scanner;
 
 
 class GameTest {
-
     @BeforeEach
     void setUp() {
         Game.pwins = 0;
@@ -29,7 +29,9 @@ class GameTest {
         Game.playerIsAlive = true;
         Game.dealerIsAlive = true;
         Game.blackjacked = false;
+        Game.deckInit();
     }
+
 
     @Test
     void testDeckInit() {
@@ -46,29 +48,27 @@ class GameTest {
     }
 
     @Test
-    void testPlayerStepTakeCard() {
-        try (MockedConstruction<Hand> mockedHand = mockConstruction(Hand.class)) {
+    void testPlayerStep_ActionTakeCard() {
+        Game.player = new Hand("Player");
 
-            Deck mockDeck = mock(Deck.class);
-            Card mockCard = mock(Card.class);
+        Deck mockDeck = mock(Deck.class);
+        Card mockCard = mock(Card.class);
 
-            when(mockDeck.throwCard()).thenReturn(mockCard);
+        when(mockCard.getVal()).thenReturn(10);
+        when(mockCard.pseudoPic()).thenReturn("[10 ♠]");
 
-            Game.deck = mockDeck;
+        when(mockDeck.throwCard()).thenReturn(mockCard);
+        Game.deck = mockDeck;
 
-            Scanner mockScanner = mock(Scanner.class);
-            when(mockScanner.nextInt()).thenReturn(1);
+        Scanner mockScanner = mock(Scanner.class);
+        when(mockScanner.nextInt()).thenReturn(1);
 
-            Game.player = new Hand("Player");
+        Game.playerStep(mockScanner);
 
-            Hand mockPlayerHand = mockedConstructionTarget(mockedHand, 0);
-            when(mockPlayerHand.getScore()).thenReturn(15);
-
-            Game.playerStep(mockScanner);
-
-            verify(mockPlayerHand).takeCard(mockCard);
-            assertTrue(Game.playerIsAlive);
-        }
+        assertEquals(1, Game.player.getCards().size());
+        assertSame(mockCard, Game.player.getCards().get(0));
+        assertEquals(10, Game.player.getScore());
+        assertTrue(Game.playerIsAlive);
     }
 
     @Test
