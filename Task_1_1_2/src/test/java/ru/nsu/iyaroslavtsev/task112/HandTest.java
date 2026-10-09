@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.BeforeEach;
 
 
 class HandTest {
@@ -88,12 +88,13 @@ class HandTest {
         Hand dealerHand = new Hand("Dealer");
 
         Card mockCard1 = mock(Card.class);
-        Card mockCard2 = mock(Card.class);
 
         when(mockCard1.getVal()).thenReturn(10);
         when(mockCard1.pseudoPic()).thenReturn("[K ♣]");
 
         dealerHand.takeCard(mockCard1);
+
+        Card mockCard2 = mock(Card.class);
         dealerHand.takeCard(mockCard2);
 
         String expectedOutput = "\nDealer's cards: [ 10 + ? ]\n[K ♣]  [hidden]";

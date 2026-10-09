@@ -26,6 +26,7 @@ public enum Suit {
 
     /**
      * Returns name.
+     *
      * @return name.
      */
     public String getName() {
