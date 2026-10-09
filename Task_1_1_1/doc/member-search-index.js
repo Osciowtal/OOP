@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"ru.nsu.iyaroslavtsev.Task_1_1_1","c":"HeapSort","l":"HeapSort()","u":"%3Cinit%3E()"},{"p":"ru.nsu.iyaroslavtsev.Task_1_1_1","c":"HeapSort","l":"main(String[])","u":"main(java.lang.String[])"},{"p":"ru.nsu.iyaroslavtsev.Task_1_1_1","c":"HeapSort","l":"sort(int[])"}];updateSearchResults();
