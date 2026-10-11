@@ -17,7 +17,8 @@ class Div extends Expression {
      * @param r - right.
      */
     public Div(Expression l, Expression r) {
-        left = l; right = r;
+        left = l;
+        right = r;
     }
 
     @Override public void insert(StringBuilder expr) {

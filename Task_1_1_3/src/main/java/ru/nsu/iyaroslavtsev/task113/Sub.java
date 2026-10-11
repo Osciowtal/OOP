@@ -17,7 +17,8 @@ class Sub extends Expression {
      * @param r - r.
      */
     public Sub(Expression l, Expression r) {
-        left = l; right = r;
+        left = l;
+        right = r;
     }
 
     @Override public void insert(StringBuilder expr) {

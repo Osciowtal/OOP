@@ -17,7 +17,8 @@ class Add extends Expression {
      * @param r - right.
      */
     public Add(Expression l, Expression r) {
-        left = l; right = r;
+        left = l;
+        right = r;
     }
 
     @Override public void insert(StringBuilder expr) {

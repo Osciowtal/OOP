@@ -18,14 +18,23 @@ public abstract class Expression {
     }
 
     public abstract void insert(StringBuilder x);
+
     public abstract Expression derivative(String var);
+
     public abstract double eval(Map<String, Double> vars);
+
+    /**
+     * evaluate after string assignments are parsed.
+     *
+     * @param assigments - assignments.
+     * @return res.
+     */
     public double eval(String assigments) {
         return eval(parseArgs(assigments));
     }
 
     /**
-     * Returns map <vars, values></>
+     * Returns map (vars, vals).
      *
      * @param input - string to parse.
      * @return map.
