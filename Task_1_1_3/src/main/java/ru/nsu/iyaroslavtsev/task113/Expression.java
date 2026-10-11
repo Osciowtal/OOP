@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class Expression {
+
     public void print() {
         StringBuilder res = new StringBuilder();
         insert(res);

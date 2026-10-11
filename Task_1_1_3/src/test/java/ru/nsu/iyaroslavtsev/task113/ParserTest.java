@@ -100,4 +100,53 @@ class ParserTest {
         Parser.parse("42");
         assertEquals(0, Main.variabled);
     }
+
+    @Test
+    void parsesInsideExpression() {
+        Expression e = Parser.parse("(1.5+2.25)");
+        StringBuilder sb = new StringBuilder();
+        e.insert(sb);
+        assertEquals("(1.5+2.25)", sb.toString());
+        assertEquals(3.75, e.eval(""));
+    }
+
+    @Test
+    void parsesDecimalWithVariable() {
+        Expression e = Parser.parse("(x*1.5)");
+        assertEquals(15.0, e.eval("x=10"));
+    }
+
+    @Test
+    void parsesMultiLetterVariable() {
+        Expression e = Parser.parse("(counter+1)");
+        assertEquals(11.0, e.eval("counter=10"));
+    }
+
+    @Test
+    void parsesVariableWithUnderscore() {
+        Expression e = Parser.parse("(my_var+2)");
+        assertEquals(7.0, e.eval("my_var=5"));
+    }
+
+    @Test
+    void parsesVariableWithDigits() {
+        Expression e = Parser.parse("(x1+x2)");
+        assertEquals(30.0, e.eval("x1=10; x2=20"));
+    }
+
+    @Test
+    void differentVariablesAreDistinguished() {
+        Expression e = Parser.parse("(abc+xyz)");
+        assertEquals(3.0, e.eval("abc=1; xyz=2"));
+    }
+
+    @Test
+    void parseDoesNotAffectSecondParse() {
+        Main.variabled = 0;
+        Parser.parse("x");
+        assertEquals(1, Main.variabled);
+        Main.variabled = 0;
+        Parser.parse("42");
+        assertEquals(0, Main.variabled);
+    }
 }

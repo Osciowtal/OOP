@@ -3,6 +3,7 @@ package ru.nsu.iyaroslavtsev.task113;
 import java.util.Scanner;
 
 public class Main {
+
     public static int variabled = 0;
     public static int want_to_assign = 0;
 

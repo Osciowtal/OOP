@@ -3,7 +3,10 @@ package ru.nsu.iyaroslavtsev.task113;
 import java.util.Map;
 
 class Add extends Expression {
-    private final Expression left, right;
+
+    private final Expression left;
+    private final Expression right;
+
     public Add(Expression l, Expression r) {
         left = l; right = r;
     }

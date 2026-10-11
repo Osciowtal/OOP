@@ -1,6 +1,7 @@
 package ru.nsu.iyaroslavtsev.task113;
 
 class Parser {
+
     private final String s;
     private int pos;
 

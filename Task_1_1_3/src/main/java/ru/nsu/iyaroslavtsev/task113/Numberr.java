@@ -3,6 +3,7 @@ package ru.nsu.iyaroslavtsev.task113;
 import java.util.Map;
 
 class Numberr extends Expression {
+
     private final double value;
 
     public Numberr(double value) {
