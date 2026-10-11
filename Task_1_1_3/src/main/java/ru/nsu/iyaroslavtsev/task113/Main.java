@@ -14,7 +14,7 @@ public class Main {
      * Main function that asks user to input expression.
      * Then there are 2 options - compute value / derivative.
      *
-     * @param args
+     * @param args - args.
      */
     public static void main(String[] args) {
         // parsing from string
@@ -26,8 +26,7 @@ public class Main {
         System.out.println("Insert your expression:");
 
         Scanner scanner = new Scanner(System.in);
-        String str_expr = scanner.nextLine();
-        Expression parsed = Parser.parse(str_expr);
+        String strExpr = scanner.nextLine();
 
         String assignments = new String();
         if (variabled == 1) {
@@ -39,6 +38,8 @@ public class Main {
                 assignments = scanner.nextLine();
             }
         }
+
+        Expression parsed = Parser.parse(strExpr);
 
         System.out.println("What would you like to compute:");
         System.out.println("[1] Value\n[2] Derivative");
@@ -69,6 +70,9 @@ public class Main {
                     String var = scanner.nextLine();
                     Expression dexpr = parsed.derivative(var);
                     dexpr.print();
+                    break;
+                default:
+                    System.out.println("Unrecognized option :(");
                     break;
             }
         }
