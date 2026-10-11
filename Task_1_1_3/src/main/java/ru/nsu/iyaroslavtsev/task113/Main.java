@@ -27,7 +27,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         String strExpr = scanner.nextLine();
-        Expression parsed = Parser.parse(strExpr);
+        final Expression parsed = Parser.parse(strExpr);
 
         String assignments = new String();
         if (variabled == 1) {

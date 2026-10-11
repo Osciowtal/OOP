@@ -51,7 +51,7 @@ class Parser {
             }
             final char op = stri.charAt(pos++);
 
-            Expression rightExpr = parseExpr();
+            final Expression rightExpr = parseExpr();
             skipSpaces();
 
             if (pos >= stri.length() || stri.charAt(pos) != ')') {
