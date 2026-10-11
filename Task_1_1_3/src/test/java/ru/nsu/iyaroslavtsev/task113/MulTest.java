@@ -1,9 +1,9 @@
 package ru.nsu.iyaroslavtsev.task113;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MulTest {
 
