@@ -27,6 +27,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         String strExpr = scanner.nextLine();
+        Expression parsed = Parser.parse(strExpr);
 
         String assignments = new String();
         if (variabled == 1) {
@@ -38,8 +39,6 @@ public class Main {
                 assignments = scanner.nextLine();
             }
         }
-
-        Expression parsed = Parser.parse(strExpr);
 
         System.out.println("What would you like to compute:");
         System.out.println("[1] Value\n[2] Derivative");
