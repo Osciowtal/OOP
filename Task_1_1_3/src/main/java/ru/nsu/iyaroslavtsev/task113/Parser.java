@@ -5,7 +5,7 @@ package ru.nsu.iyaroslavtsev.task113;
  */
 class Parser {
 
-    private final String s;
+    private final String stri;
     private int pos;
 
     /**
@@ -18,51 +18,56 @@ class Parser {
         Parser p = new Parser(str);
         Expression e = p.parseExpr();
         p.skipSpaces();
-        if (p.pos != p.s.length()) {
+        if (p.pos != p.stri.length()) {
             throw new IllegalArgumentException(
-                    "Trouble at position " + p.pos + ": '" + p.s.substring(p.pos) + "'");
+                    "Trouble at position " + p.pos + ": '" + p.stri.substring(p.pos) + "'");
         }
         return e;
     }
 
     private Parser(String s) {
-        this.s = s;
+        this.stri = s;
         this.pos = 0;
     }
 
     private void skipSpaces() {
-        while (pos < s.length() && Character.isWhitespace(s.charAt(pos))) pos++;
+        while (pos < stri.length() && Character.isWhitespace(stri.charAt(pos))) {
+            pos++;
+        }
     }
 
     // expr = '(' l_expr op r_expr ')' | atom
     private Expression parseExpr() {
         skipSpaces();
         // '(' l_expr op r_expr ')'
-        if (pos < s.length() && s.charAt(pos) == '(') {
+        if (pos < stri.length() && stri.charAt(pos) == '(') {
 
             pos++;
-            Expression l_expr = parseExpr();
+            final Expression leftExpr = parseExpr();
             skipSpaces();
 
-            if (pos >= s.length()) throw new IllegalArgumentException("Expected operation");
-            char op = s.charAt(pos++);
+            if (pos >= stri.length()) {
+                throw new IllegalArgumentException("Expected operation");
+            }
+            final char op = stri.charAt(pos++);
 
-            Expression r_expr = parseExpr();
+            Expression rightExpr = parseExpr();
             skipSpaces();
 
-            if (pos >= s.length() || s.charAt(pos) != ')')
+            if (pos >= stri.length() || stri.charAt(pos) != ')') {
                 throw new IllegalArgumentException("Expected ')' at position " + pos);
+            }
             pos++;
 
             switch (op) {
                 case '+':
-                    return new Add(l_expr, r_expr);
+                    return new Add(leftExpr, rightExpr);
                 case '-':
-                    return new Sub(l_expr, r_expr);
+                    return new Sub(leftExpr, rightExpr);
                 case '*':
-                    return new Mul(l_expr, r_expr);
+                    return new Mul(leftExpr, rightExpr);
                 case '/':
-                    return new Div(l_expr, r_expr);
+                    return new Div(leftExpr, rightExpr);
                 default:
                     throw new IllegalArgumentException("Unknown operation: " + op);
             }
@@ -70,17 +75,19 @@ class Parser {
 
         // atom: number / variable
         int start = pos;
-        while (pos < s.length()) {
-            char c = s.charAt(pos);
+        while (pos < stri.length()) {
+            char c = stri.charAt(pos);
             if (Character.isLetterOrDigit(c) || c == '_' || c == '.') {
                 pos++;
-            } else break;
+            } else {
+                break;
+            }
         }
 
-        String tok = s.substring(start, pos);
+        String tok = stri.substring(start, pos);
         if (tok.isEmpty()) {
             throw new IllegalArgumentException("Unexpected symbol at position " + pos + ": '"
-                    + (pos < s.length() ? s.charAt(pos) : "EOF") + "'");
+                    + (pos < stri.length() ? stri.charAt(pos) : "EOF") + "'");
         }
         if (tok.matches("\\d+(\\.\\d+)?")) {
             return new Numberr(Double.parseDouble(tok));
