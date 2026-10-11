@@ -2,11 +2,20 @@ package ru.nsu.iyaroslavtsev.task113;
 
 import java.util.Map;
 
+/**
+ * Mul class.
+ */
 class Mul extends Expression {
 
     private final Expression left;
     private final Expression right;
 
+    /**
+     * Sets left / right expressions.
+     *
+     * @param l - left.
+     * @param r - right.
+     */
     public Mul(Expression l, Expression r) {
         left = l; right = r;
     }

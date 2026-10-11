@@ -2,11 +2,20 @@ package ru.nsu.iyaroslavtsev.task113;
 
 import java.util.Scanner;
 
+/**
+ * Main class.
+ */
 public class Main {
 
     public static int variabled = 0;
     public static int want_to_assign = 0;
 
+    /**
+     * Main function that asks user to input expression.
+     * Then there are 2 options - compute value / derivative.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         // parsing from string
         // receiving expression from stdin

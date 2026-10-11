@@ -2,11 +2,20 @@ package ru.nsu.iyaroslavtsev.task113;
 
 import java.util.Map;
 
+/**
+ * Subtraction class.
+ */
 class Sub extends Expression {
 
     private final Expression left;
     private final Expression right;
 
+    /**
+     * Sets l & r.
+     *
+     * @param l - l.
+     * @param r - r.
+     */
     public Sub(Expression l, Expression r) {
         left = l; right = r;
     }

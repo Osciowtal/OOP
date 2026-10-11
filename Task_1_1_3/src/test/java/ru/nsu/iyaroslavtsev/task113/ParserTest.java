@@ -1,10 +1,10 @@
 package ru.nsu.iyaroslavtsev.task113;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 class ParserTest {
 
@@ -132,6 +132,24 @@ class ParserTest {
     void parsesVariableWithDigits() {
         Expression e = Parser.parse("(x1+x2)");
         assertEquals(30.0, e.eval("x1=10; x2=20"));
+    }
+
+    @Test
+    void rejectsUnknownOperator() {
+        assertThrows(IllegalArgumentException.class,
+                () -> Parser.parse("(3&2)"));
+    }
+
+    @Test
+    void rejectsOperatorWithoutRightOperand() {
+        assertThrows(IllegalArgumentException.class,
+                () -> Parser.parse("(3+)"));
+    }
+
+    @Test
+    void rejectsStartingWithOperator() {
+        assertThrows(IllegalArgumentException.class,
+                () -> Parser.parse("+5"));
     }
 
     @Test

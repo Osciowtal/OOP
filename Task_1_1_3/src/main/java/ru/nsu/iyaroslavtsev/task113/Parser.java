@@ -1,10 +1,19 @@
 package ru.nsu.iyaroslavtsev.task113;
 
+/**
+ * Parser class.
+ */
 class Parser {
 
     private final String s;
     private int pos;
 
+    /**
+     * Parsing.
+     *
+     * @param str - string.
+     * @return expression.
+     */
     public static Expression parse(String str) {
         Parser p = new Parser(str);
         Expression e = p.parseExpr();
@@ -67,6 +76,7 @@ class Parser {
                 pos++;
             } else break;
         }
+
         String tok = s.substring(start, pos);
         if (tok.isEmpty()) {
             throw new IllegalArgumentException("Unexpected symbol at position " + pos + ": '"

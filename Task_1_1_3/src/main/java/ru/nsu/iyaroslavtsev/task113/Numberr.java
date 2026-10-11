@@ -2,10 +2,18 @@ package ru.nsu.iyaroslavtsev.task113;
 
 import java.util.Map;
 
+/**
+ * Numberr class.
+ */
 class Numberr extends Expression {
 
     private final double value;
 
+    /**
+     * Sets value.
+     *
+     * @param value - value.
+     */
     public Numberr(double value) {
         this.value = value;
     }

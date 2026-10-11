@@ -2,10 +2,18 @@ package ru.nsu.iyaroslavtsev.task113;
 
 import java.util.Map;
 
+/**
+ * Variable class.
+ */
 class Variable extends Expression {
 
     private final String name;
 
+    /**
+     * Sets name.
+     *
+     * @param name - name.
+     */
     public Variable(String name) { this.name = name; }
 
     @Override public void insert(StringBuilder expr) { expr.append(name); }

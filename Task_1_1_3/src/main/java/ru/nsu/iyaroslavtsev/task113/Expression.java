@@ -3,8 +3,14 @@ package ru.nsu.iyaroslavtsev.task113;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Abstract class.
+ */
 public abstract class Expression {
 
+    /**
+     * print.
+     */
     public void print() {
         StringBuilder res = new StringBuilder();
         insert(res);
@@ -18,6 +24,12 @@ public abstract class Expression {
         return eval(parseArgs(assigments));
     }
 
+    /**
+     * Returns map <vars, values></>
+     *
+     * @param input - string to parse.
+     * @return map.
+     */
     public Map<String, Double> parseArgs(String input) {
 
         Map<String, Double> res = new HashMap<>();
