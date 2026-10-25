@@ -1,16 +1,14 @@
 package ru.nsu.iyaroslavtsev.task121;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 class ReaderTest {
 
@@ -22,7 +20,9 @@ class ReaderTest {
         Path file = tempDir.resolve("graph.txt");
 
         Files.writeString(file,
-                "A B C\n" + "A B\n" + "B C\n");
+                "A B C\n"
+                        + "A B\n"
+                        + "B C\n");
 
         Graph graph = Reader.read(file.toString());
 
@@ -59,7 +59,9 @@ class ReaderTest {
         Path file = tempDir.resolve("graph.txt");
 
         Files.writeString(file,
-                "A B\n" + "\n" + "A B\n");
+                "A B\n"
+                        + "\n"
+                        + "A B\n");
 
         Graph graph = Reader.read(file.toString());
 
