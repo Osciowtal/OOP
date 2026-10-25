@@ -16,6 +16,13 @@ public final class Utils {
     private Utils() {
     }
 
+    /**
+     * Compares two graphs for equality.
+     *
+     * @param graph the first graph.
+     * @param obj the second object to compare.
+     * @return true if the graphs are equal, false otherwise.
+     */
     public static boolean equals(Graph graph, Object obj) {
         if (graph == obj) {
             return true;
@@ -53,6 +60,12 @@ public final class Utils {
         return toString(graph).hashCode();
     }
 
+    /**
+     * Returns a string representation of the graph.
+     *
+     * @param graph the graph to convert.
+     * @return string representation of the graph.
+     */
     public static String toString(Graph graph) {
         List<String> vertices = new ArrayList<>(graph.getVertices());
         Collections.sort(vertices);

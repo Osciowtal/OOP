@@ -12,6 +12,13 @@ import java.util.Queue;
  */
 public class Kahn {
 
+    /**
+     * Performs topological sort using Kahn's algorithm.
+     *
+     * @param graph the graph to sort.
+     * @return list of vertices in topological order.
+     * @throws IllegalArgumentException if the graph contains a cycle.
+     */
     public static List<String> sort(Graph graph) {
         List<String> vertices = graph.getVertices();
 

@@ -22,9 +22,7 @@ class ReaderTest {
         Path file = tempDir.resolve("graph.txt");
 
         Files.writeString(file,
-                "A B C\n" +
-                        "A B\n" +
-                        "B C\n");
+                "A B C\n" + "A B\n" + "B C\n");
 
         Graph graph = Reader.read(file.toString());
 
@@ -61,9 +59,7 @@ class ReaderTest {
         Path file = tempDir.resolve("graph.txt");
 
         Files.writeString(file,
-                "A B\n" +
-                        "\n" +
-                        "A B\n");
+                "A B\n" + "\n" + "A B\n");
 
         Graph graph = Reader.read(file.toString());
 
