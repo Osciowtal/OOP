@@ -12,9 +12,9 @@ public class Reader {
     /**
      * Reads a graph from a file.
      *
-     * @param filename the file to read from.
-     * @return the constructed graph.
-     * @throws IOException if an I/O error occurs or the file format is invalid.
+     * @param filename the file to read from
+     * @return the constructed graph
+     * @throws IOException if an I/O error occurs or the file format is invalid
      */
     public static Graph read(String filename) throws IOException {
         try (BufferedReader reader = new BufferedReader(

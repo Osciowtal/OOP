@@ -10,8 +10,8 @@ public class Main {
     /**
      * Entry point of the program.
      *
-     * @param args args. the first is the filename.
-     * @throws IOException if the file cannot be read.
+     * @param args command line arguments; the first is the filename
+     * @throws IOException if the file cannot be read
      */
     public static void main(String[] args) throws IOException {
         Graph graph = Reader.read(args[0]);
