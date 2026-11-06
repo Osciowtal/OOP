@@ -19,42 +19,39 @@ public class Kahn {
      * @return list of vertices in topological order
      * @throws IllegalArgumentException if the graph contains a cycle
      */
-    public static List<String> sort(Graph graph) {
-        List<String> vertices = graph.getVertices();
+    public static <T> List<T> sort(Graph<T> graph) {
+        List<T> vertices = graph.getVertices();
 
         // 1. Calculate inDegree for each vertex
-        Map<String, Integer> inDegree = new HashMap<>();
+        Map<T, Integer> inDegree = new HashMap<>();
 
-        for (String v : vertices) {
+        for (T v : vertices) {
             inDegree.put(v, 0);
         }
 
-        for (String v : vertices) {
-            for (String neighbor : graph.getNeighbors(v)) {
-                inDegree.put(
-                        neighbor,
-                        inDegree.get(neighbor) + 1
-                );
+        for (T v : vertices) {
+            for (T neighbor : graph.getNeighbors(v)) {
+                inDegree.put(neighbor, inDegree.get(neighbor) + 1);
             }
         }
 
         // 2. Find vertices with inDegree == 0
-        Queue<String> queue = new ArrayDeque<>();
+        Queue<T> queue = new ArrayDeque<>();
 
-        for (String v : vertices) {
+        for (T v : vertices) {
             if (inDegree.get(v) == 0) {
                 queue.add(v);
             }
         }
 
         // 3. Topological order
-        List<String> result = new ArrayList<>();
+        List<T> result = new ArrayList<>();
 
         while (!queue.isEmpty()) {
-            String v = queue.remove();
+            T v = queue.remove();
             result.add(v);
 
-            for (String neighbor : graph.getNeighbors(v)) {
+            for (T neighbor : graph.getNeighbors(v)) {
                 int degree = inDegree.get(neighbor) - 1;
                 inDegree.put(neighbor, degree);
 

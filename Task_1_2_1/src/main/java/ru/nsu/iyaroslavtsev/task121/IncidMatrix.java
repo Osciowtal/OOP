@@ -2,17 +2,28 @@ package ru.nsu.iyaroslavtsev.task121;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Incidence Matrix.
  */
-public class IncidMatrix implements Graph {
-    private final List<String> vertices = new ArrayList<>();
-    private final List<String[]> edges = new ArrayList<>();
+public class IncidMatrix<T> implements Graph<T> {
+    private final List<T> vertices = new ArrayList<>();
+    private final List<Edge<T>> edges = new ArrayList<>();
     private final List<List<Integer>> matrix = new ArrayList<>();
 
+    private static class Edge<T> {
+        private final T src;
+        private final T dst;
+
+        Edge(T src, T dst) {
+            this.src = src;
+            this.dst = dst;
+        }
+    }
+
     @Override
-    public void addVertex(String v) {
+    public void addVertex(T v) {
         if (vertices.contains(v)) {
             return;
         }
@@ -29,7 +40,7 @@ public class IncidMatrix implements Graph {
     }
 
     @Override
-    public void rmvVertex(String v) {
+    public void rmvVertex(T v) {
         int vertexIndex = vertices.indexOf(v);
 
         if (vertexIndex == -1) {
@@ -37,9 +48,9 @@ public class IncidMatrix implements Graph {
         }
 
         for (int i = edges.size() - 1; i >= 0; i--) {
-            String[] edge = edges.get(i);
+            Edge<T> edge = edges.get(i);
 
-            if (edge[0].equals(v) || edge[1].equals(v)) {
+            if (Objects.equals(edge.src, v) || Objects.equals(edge.dst, v)) {
                 edges.remove(i);
 
                 for (List<Integer> row : matrix) {
@@ -53,28 +64,28 @@ public class IncidMatrix implements Graph {
     }
 
     @Override
-    public void addEdge(String src, String dst) {
+    public void addEdge(T src, T dst) {
         if (!vertices.contains(src) || !vertices.contains(dst)) {
             throw new IllegalArgumentException(
                     "Vertex does not exist"
             );
         }
 
-        for (String[] edge : edges) {
-            if (edge[0].equals(src) && edge[1].equals(dst)) {
+        for (Edge<T> edge : edges) {
+            if (Objects.equals(edge.src, src) && Objects.equals(edge.dst, dst)) {
                 return;
             }
         }
 
-        edges.add(new String[]{src, dst});
+        edges.add(new Edge<>(src, dst));
 
         for (int i = 0; i < vertices.size(); i++) {
-            String vertex = vertices.get(i);
+            T vertex = vertices.get(i);
             int value = 0;
 
-            if (vertex.equals(src)) {
+            if (Objects.equals(vertex, src)) {
                 value = -1;
-            } else if (vertex.equals(dst)) {
+            } else if (Objects.equals(vertex, dst)) {
                 value = 1;
             }
 
@@ -83,11 +94,11 @@ public class IncidMatrix implements Graph {
     }
 
     @Override
-    public void rmvEdge(String src, String dst) {
+    public void rmvEdge(T src, T dst) {
         for (int i = 0; i < edges.size(); i++) {
-            String[] edge = edges.get(i);
+            Edge<T> edge = edges.get(i);
 
-            if (edge[0].equals(src) && edge[1].equals(dst)) {
+            if (Objects.equals(edge.src, src) && Objects.equals(edge.dst, dst)) {
                 edges.remove(i);
 
                 for (List<Integer> row : matrix) {
@@ -100,7 +111,7 @@ public class IncidMatrix implements Graph {
     }
 
     @Override
-    public List<String> getNeighbors(String v) {
+    public List<T> getNeighbors(T v) {
         int vertexIndex = vertices.indexOf(v);
 
         if (vertexIndex == -1) {
@@ -109,11 +120,11 @@ public class IncidMatrix implements Graph {
             );
         }
 
-        List<String> neighbors = new ArrayList<>();
+        List<T> neighbors = new ArrayList<>();
 
         for (int i = 0; i < edges.size(); i++) {
             if (matrix.get(vertexIndex).get(i) == -1) {
-                neighbors.add(edges.get(i)[1]);
+                neighbors.add(edges.get(i).dst);
             }
         }
 
@@ -121,7 +132,7 @@ public class IncidMatrix implements Graph {
     }
 
     @Override
-    public List<String> getVertices() {
+    public List<T> getVertices() {
         return new ArrayList<>(vertices);
     }
 

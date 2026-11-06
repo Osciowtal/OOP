@@ -2,6 +2,7 @@ package ru.nsu.iyaroslavtsev.task121;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,32 +21,33 @@ public final class Utils {
      * Compares two graphs for equality.
      *
      * @param graph the first graph
-     * @param obj   the second object to compare
+     * @param obj the second object to compare
      * @return true if the graphs are equal, false otherwise
      */
-    public static boolean equals(Graph graph, Object obj) {
+    public static <T> boolean equals(Graph<T> graph, Object obj) {
         if (graph == obj) {
             return true;
         }
 
-        if (!(obj instanceof Graph)) {
+        if (!(obj instanceof Graph<?>)) {
             return false;
         }
 
-        Graph other = (Graph) obj;
+        @SuppressWarnings("unchecked")
+        Graph<T> other = (Graph<T>) obj;
 
-        Set<String> vertices = new HashSet<>(graph.getVertices());
-        Set<String> otherVertices = new HashSet<>(other.getVertices());
+        Set<T> vertices = new HashSet<>(graph.getVertices());
+        Set<T> otherVertices = new HashSet<>(other.getVertices());
 
         if (!vertices.equals(otherVertices)) {
             return false;
         }
 
-        for (String vertex : vertices) {
-            Set<String> neighbors =
+        for (T vertex : vertices) {
+            Set<T> neighbors =
                     new HashSet<>(graph.getNeighbors(vertex));
 
-            Set<String> otherNeighbors =
+            Set<T> otherNeighbors =
                     new HashSet<>(other.getNeighbors(vertex));
 
             if (!neighbors.equals(otherNeighbors)) {
@@ -56,7 +58,7 @@ public final class Utils {
         return true;
     }
 
-    public static int hashCode(Graph graph) {
+    public static int hashCode(Graph<?> graph) {
         return toString(graph).hashCode();
     }
 
@@ -66,9 +68,10 @@ public final class Utils {
      * @param graph the graph to convert
      * @return string representation of the graph
      */
-    public static String toString(Graph graph) {
-        List<String> vertices = new ArrayList<>(graph.getVertices());
-        Collections.sort(vertices);
+    public static <T> String toString(Graph<T> graph) {
+        List<T> vertices = new ArrayList<>(graph.getVertices());
+
+        vertices.sort(Comparator.comparing(String::valueOf));
 
         if (vertices.isEmpty()) {
             return "(empty graph)";
@@ -76,14 +79,16 @@ public final class Utils {
 
         StringBuilder result = new StringBuilder();
 
-        for (String vertex : vertices) {
-            List<String> neighbors =
-                    new ArrayList<>(graph.getNeighbors(vertex));
+        for (T vertex : vertices) {
+            List<String> neighbors = new ArrayList<>();
+
+            for (T neighbor : graph.getNeighbors(vertex)) {
+                neighbors.add(String.valueOf(neighbor));
+            }
 
             Collections.sort(neighbors);
 
-            result.append(vertex)
-                    .append(" -> ");
+            result.append(vertex).append(" -> ");
 
             if (neighbors.isEmpty()) {
                 result.append("[]");

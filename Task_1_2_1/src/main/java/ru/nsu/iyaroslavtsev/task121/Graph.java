@@ -5,18 +5,18 @@ import java.util.List;
 /**
  * Graph interface.
  */
-public interface Graph {
-    void addVertex(String v);
+public interface Graph<T> {
+    void addVertex(T v);
 
-    void rmvVertex(String v);
+    void rmvVertex(T v);
 
-    void addEdge(String src, String dst);
+    void addEdge(T src, T dst);
 
-    void rmvEdge(String src, String dst);
+    void rmvEdge(T src, T dst);
 
-    List<String> getNeighbors(String v);
+    List<T> getNeighbors(T v);
 
-    List<String> getVertices();
+    List<T> getVertices();
 
     boolean equals(Object obj);
 

@@ -1,8 +1,8 @@
 package ru.nsu.iyaroslavtsev.task121;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.util.function.Function;
 
 /**
  * Class for reading graphs from a file.
@@ -10,59 +10,62 @@ import java.io.IOException;
 public class Reader {
 
     /**
-     * Reads a graph from a file.
+     * Reads vertices and edges from a file.
      *
-     * @param filename the file to read from
-     * @return the constructed graph
-     * @throws IOException if an I/O error occurs or the file format is invalid
+     * @param reader the reader to read from
+     * @param graph the graph to fill
+     * @param parser the function for parsing vertices
+     * @throws IOException if the file format is invalid
      */
-    public static Graph read(String filename) throws IOException {
-        try (BufferedReader reader = new BufferedReader(
-                new FileReader(filename))) {
+    public static <T> void read(BufferedReader reader, Graph<T> graph, Function<String, T> parser) throws IOException {
 
-            String line = reader.readLine();
+        String verts = reader.readLine();
 
-            if (line == null) {
-                throw new IOException("File is empty");
-            }
+        if (verts == null) {
+            throw new IOException("Missing vertices.");
+        }
 
-            Graph graph = new AdjList();
+        if (!verts.isBlank()) {
+            String[] vertices = verts.trim().split("\\s+");
 
-            String[] vertices = line.trim().split("\\s+");
-
-            if (!line.isBlank()) {
-                for (String vertex : vertices) {
-                    graph.addVertex(vertex);
-                }
-            }
-
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-
-                if (line.isEmpty()) {
-                    continue;
-                }
-
-                String[] edge = line.split("\\s+");
-
-                if (edge.length != 2) {
-                    throw new IOException(
-                            "Invalid edge format: " + line
-                    );
-                }
-
-                String src = edge[0];
-                String dst = edge[1];
-
+            for (String v : vertices) {
                 try {
-                    graph.addEdge(src, dst);
-                } catch (IllegalArgumentException e) {
-                    throw new IOException(
-                            "Edge references an unknown vertex: " + line, e
-                    );
+                    graph.addVertex(parser.apply(v));
+                } catch (RuntimeException e) {
+                    throw new IOException("Invalid vertex: " + v, e);
                 }
             }
-            return graph;
+        }
+
+        String edgeline;
+        while ((edgeline = reader.readLine()) != null) {
+            edgeline = edgeline.trim();
+
+            if (edgeline.isEmpty()) {
+                continue;
+            }
+
+            String[] edge = edgeline.split("\\s+");
+
+            if (edge.length != 2) {
+                throw new IOException("Invalid edge format: " + edgeline);
+            }
+
+            T src;
+            T dst;
+
+            try {
+                src = parser.apply(edge[0]);
+                dst = parser.apply(edge[1]);
+            } catch (RuntimeException e) {
+                throw new IOException("Invalid edge: " + edgeline, e);
+            }
+
+            try {
+                graph.addEdge(src, dst);
+            } catch (IllegalArgumentException e) {
+                throw new IOException("Edge references an unknown vertex: " + edgeline, e);
+            }
         }
     }
 }

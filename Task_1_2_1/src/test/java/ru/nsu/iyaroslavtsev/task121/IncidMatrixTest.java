@@ -1,36 +1,59 @@
 package ru.nsu.iyaroslavtsev.task121;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class IncidMatrixTest {
 
     @Test
-    void addVertex() {
-        Graph graph = new IncidMatrix();
+    void addVertexAndGetVertices() {
+        Graph<String> graph = new IncidMatrix<>();
 
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("A");
 
-        assertEquals(2, graph.getVertices().size());
+        assertEquals(Set.of("A", "B"), new HashSet<>(graph.getVertices()));
     }
 
     @Test
-    void addAndRemoveEdge() {
-        Graph graph = new IncidMatrix();
+    void addEdgeAndGetNeighbors() {
+        Graph<String> graph = new IncidMatrix<>();
         graph.addVertex("A");
         graph.addVertex("B");
+        graph.addVertex("C");
 
         graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("A", "B");
 
-        assertEquals(List.of("B"), graph.getNeighbors("A"));
+        assertEquals(List.of("B", "C"), graph.getNeighbors("A"));
+        assertTrue(graph.getNeighbors("B").isEmpty());
+    }
+
+    @Test
+    void addEdgeThrowsWhenVertexDoesNotExist() {
+        Graph<String> graph = new IncidMatrix<>();
+        graph.addVertex("A");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> graph.addEdge("A", "B"));
+        assertThrows(IllegalArgumentException.class,
+                () -> graph.addEdge("B", "A"));
+    }
+
+    @Test
+    void removeEdge() {
+        Graph<String> graph = new IncidMatrix<>();
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addEdge("A", "B");
 
         graph.rmvEdge("A", "B");
 
@@ -38,77 +61,47 @@ class IncidMatrixTest {
     }
 
     @Test
-    void duplicateEdgeIsNotAdded() {
-        Graph graph = new IncidMatrix();
-        graph.addVertex("A");
-        graph.addVertex("B");
-
-        graph.addEdge("A", "B");
-        graph.addEdge("A", "B");
-
-        assertEquals(List.of("B"), graph.getNeighbors("A"));
-    }
-
-    @Test
-    void removeVertexRemovesIncidentEdges() {
-        Graph graph = new IncidMatrix();
+    void removeVertexRemovesAllIncidentEdgesAndKeepsMatrixConsistent() {
+        Graph<String> graph = new IncidMatrix<>();
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("C");
-
+        graph.addVertex("D");
         graph.addEdge("A", "B");
         graph.addEdge("B", "C");
-        graph.addEdge("A", "C");
+        graph.addEdge("C", "D");
+        graph.addEdge("A", "D");
 
         graph.rmvVertex("B");
 
-        assertFalse(graph.getVertices().contains("B"));
-        assertEquals(List.of("C"), graph.getNeighbors("A"));
-        assertTrue(graph.getNeighbors("C").isEmpty());
+        assertEquals(Set.of("A", "C", "D"), new HashSet<>(graph.getVertices()));
+        assertEquals(List.of("D"), graph.getNeighbors("A"));
+        assertEquals(List.of("D"), graph.getNeighbors("C"));
+        assertTrue(graph.getNeighbors("D").isEmpty());
+        assertThrows(IllegalArgumentException.class,
+                () -> graph.getNeighbors("B"));
     }
 
     @Test
-    void removeUnknownVertexDoesNothing() {
-        Graph graph = new IncidMatrix();
-        graph.addVertex("A");
-
-        assertDoesNotThrow(() -> graph.rmvVertex("X"));
-        assertEquals(List.of("A"), graph.getVertices());
-    }
-
-    @Test
-    void addEdgeWithUnknownVertexThrowsException() {
-        Graph graph = new IncidMatrix();
-        graph.addVertex("A");
-
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> graph.addEdge("A", "B")
-        );
-
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> graph.addEdge("B", "A")
-        );
-    }
-
-    @Test
-    void removeUnknownEdgeDoesNothing() {
-        Graph graph = new IncidMatrix();
+    void addingVertexAfterEdgesKeepsMatrixConsistent() {
+        Graph<String> graph = new IncidMatrix<>();
         graph.addVertex("A");
         graph.addVertex("B");
+        graph.addEdge("A", "B");
+        graph.addVertex("C");
+        graph.addEdge("C", "A");
 
-        assertDoesNotThrow(() -> graph.rmvEdge("A", "B"));
-        assertDoesNotThrow(() -> graph.rmvEdge("X", "B"));
+        assertEquals(List.of("B"), graph.getNeighbors("A"));
+        assertEquals(List.of("A"), graph.getNeighbors("C"));
     }
 
     @Test
-    void getNeighborsOfUnknownVertexThrowsException() {
-        Graph graph = new IncidMatrix();
+    void supportsIntegerVertices() {
+        Graph<Integer> graph = new IncidMatrix<>();
+        graph.addVertex(10);
+        graph.addVertex(20);
+        graph.addEdge(10, 20);
 
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> graph.getNeighbors("X")
-        );
+        assertEquals(List.of(20), graph.getNeighbors(10));
     }
 }

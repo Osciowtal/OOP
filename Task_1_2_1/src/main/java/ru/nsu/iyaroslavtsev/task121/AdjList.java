@@ -8,28 +8,28 @@ import java.util.Map;
 /**
  * Class for Adjacency List.
  */
-public class AdjList implements Graph {
+public class AdjList<T> implements Graph<T> {
     /**
      * adjList.
      */
-    private final Map<String, List<String>> adjList = new HashMap<>();
+    private final Map<T, List<T>> adjList = new HashMap<>();
 
     @Override
-    public void addVertex(String v) {
+    public void addVertex(T v) {
         adjList.putIfAbsent(v, new ArrayList<>());
     }
 
     @Override
-    public void rmvVertex(String v) {
+    public void rmvVertex(T v) {
         adjList.remove(v);
 
-        for (List<String> neighbors : adjList.values()) {
+        for (List<T> neighbors : adjList.values()) {
             neighbors.remove(v);
         }
     }
 
     @Override
-    public void addEdge(String src, String dst) {
+    public void addEdge(T src, T dst) {
         if (!adjList.containsKey(src) || !adjList.containsKey(dst)) {
             throw new IllegalArgumentException("Vertex does not exist");
         }
@@ -40,14 +40,14 @@ public class AdjList implements Graph {
     }
 
     @Override
-    public void rmvEdge(String src, String dst) {
+    public void rmvEdge(T src, T dst) {
         if (adjList.containsKey(src)) {
             adjList.get(src).remove(dst);
         }
     }
 
     @Override
-    public List<String> getNeighbors(String v) {
+    public List<T> getNeighbors(T v) {
         if (!adjList.containsKey(v)) {
             throw new IllegalArgumentException("Vertex does not exist");
         }
@@ -56,7 +56,7 @@ public class AdjList implements Graph {
     }
 
     @Override
-    public List<String> getVertices() {
+    public List<T> getVertices() {
         return new ArrayList<>(adjList.keySet());
     }
 

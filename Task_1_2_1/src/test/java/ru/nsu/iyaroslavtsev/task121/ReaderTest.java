@@ -1,101 +1,141 @@
 package ru.nsu.iyaroslavtsev.task121;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.StringReader;
+import java.util.List;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
 class ReaderTest {
 
-    @TempDir
-    Path tempDir;
-
-    @Test
-    void readsValidGraph() throws IOException {
-        Path file = tempDir.resolve("graph.txt");
-
-        Files.writeString(file,
-                "A B C\n"
-                        + "A B\n"
-                        + "B C\n");
-
-        Graph graph = Reader.read(file.toString());
-
-        assertEquals(3, graph.getVertices().size());
-        assertEquals(java.util.List.of("B"), graph.getNeighbors("A"));
-        assertEquals(java.util.List.of("C"), graph.getNeighbors("B"));
+    private BufferedReader readerFor(String content) {
+        return new BufferedReader(new StringReader(content));
     }
 
     @Test
-    void readsGraphWithNoEdges() throws IOException {
-        Path file = tempDir.resolve("graph.txt");
+    void readsStringVerticesAndEdges() throws IOException {
+        Graph<String> graph = new AdjList<>();
 
-        Files.writeString(file, "A B C\n");
+        BufferedReader reader = readerFor(
+                "A B C\nA B\nB C\n"
+        );
 
-        Graph graph = Reader.read(file.toString());
+        Reader.read(reader, graph, vertexParse::parseString);
 
-        assertEquals(3, graph.getVertices().size());
-        assertTrue(graph.getNeighbors("A").isEmpty());
+        assertEquals(List.of("B"), graph.getNeighbors("A"));
+        assertEquals(List.of("C"), graph.getNeighbors("B"));
+        assertTrue(graph.getNeighbors("C").isEmpty());
     }
 
     @Test
-    void readsEmptyVertexLine() throws IOException {
-        Path file = tempDir.resolve("graph.txt");
+    void readsIntegerVerticesAndEdges() throws IOException {
+        Graph<Integer> graph = new AdjMatrix<>();
 
-        Files.writeString(file, "\n");
+        BufferedReader reader = readerFor(
+                "10 20 30\n10 20\n20 30\n"
+        );
 
-        Graph graph = Reader.read(file.toString());
+        Reader.read(reader, graph, vertexParse::parseInteger);
+
+        assertEquals(List.of(10, 20, 30), graph.getVertices());
+        assertEquals(List.of(20), graph.getNeighbors(10));
+        assertEquals(List.of(30), graph.getNeighbors(20));
+    }
+
+    @Test
+    void skipsEmptyEdgeLines() throws IOException {
+        Graph<String> graph = new AdjList<>();
+
+        BufferedReader reader = readerFor(
+                "A B\n\nA B\n   \n"
+        );
+
+        Reader.read(reader, graph, vertexParse::parseString);
+
+        assertEquals(List.of("B"), graph.getNeighbors("A"));
+    }
+
+    @Test
+    void acceptsEmptyVertexLine() throws IOException {
+        Graph<String> graph = new AdjList<>();
+
+        BufferedReader reader = readerFor("   \n");
+
+        Reader.read(reader, graph, vertexParse::parseString);
 
         assertTrue(graph.getVertices().isEmpty());
     }
 
     @Test
-    void skipsEmptyLinesBetweenEdges() throws IOException {
-        Path file = tempDir.resolve("graph.txt");
+    void throwsWhenVertexLineIsMissing() {
+        Graph<String> graph = new AdjList<>();
 
-        Files.writeString(file,
-                "A B\n"
-                        + "\n"
-                        + "A B\n");
+        BufferedReader reader = readerFor("");
 
-        Graph graph = Reader.read(file.toString());
-
-        assertEquals(java.util.List.of("B"), graph.getNeighbors("A"));
+        assertThrows(IOException.class,
+                () -> Reader.read(reader, graph, vertexParse::parseString));
     }
 
     @Test
-    void readEmptyFileThrowsException() throws IOException {
-        Path file = tempDir.resolve("empty.txt");
-        Files.write(file, new byte[0]);
+    void throwsForInvalidVertex() {
+        Graph<Integer> graph = new AdjList<>();
 
-        assertThrows(IOException.class, () -> Reader.read(file.toString()));
+        BufferedReader reader = readerFor("1 ABC\n");
+
+        IOException exception = assertThrows(
+                IOException.class,
+                () -> Reader.read(reader, graph, vertexParse::parseInteger)
+        );
+
+        assertTrue(exception.getMessage().contains("Invalid vertex: ABC"));
+        assertInstanceOf(IllegalArgumentException.class, exception.getCause());
     }
 
     @Test
-    void readMalformedEdgeThrowsException() throws IOException {
-        Path file = tempDir.resolve("malformed.txt");
-        Files.writeString(file, "A B\nA");
+    void throwsForMalformedEdge() {
+        Graph<String> graph = new AdjList<>();
 
-        assertThrows(IOException.class, () -> Reader.read(file.toString()));
+        BufferedReader reader = readerFor("A B C\nA B C\n");
+
+        IOException exception = assertThrows(
+                IOException.class,
+                () -> Reader.read(reader, graph, vertexParse::parseString)
+        );
+
+        assertTrue(exception.getMessage().contains("Invalid edge format"));
     }
 
     @Test
-    void readEdgeWithUnknownVertexThrowsException() throws IOException {
-        Path file = tempDir.resolve("unknown.txt");
-        Files.writeString(file, "A B\nA C");
+    void throwsForInvalidIntegerInEdge() {
+        Graph<Integer> graph = new AdjList<>();
 
-        assertThrows(IOException.class, () -> Reader.read(file.toString()));
+        BufferedReader reader = readerFor("1 2\n1 ABC\n");
+
+        IOException exception = assertThrows(
+                IOException.class,
+                () -> Reader.read(reader, graph, vertexParse::parseInteger)
+        );
+
+        assertTrue(exception.getMessage().contains("Invalid edge"));
     }
 
     @Test
-    void readNonexistentFileThrowsException() {
-        Path file = tempDir.resolve("nonexistent.txt");
+    void throwsWhenEdgeReferencesUnknownVertex() {
+        Graph<String> graph = new AdjList<>();
 
-        assertThrows(IOException.class, () -> Reader.read(file.toString()));
+        BufferedReader reader = readerFor("A B\nA C\n");
+
+        IOException exception = assertThrows(
+                IOException.class,
+                () -> Reader.read(reader, graph, vertexParse::parseString)
+        );
+
+        assertTrue(exception.getMessage().contains("unknown vertex"));
+        assertInstanceOf(IllegalArgumentException.class, exception.getCause());
     }
 }

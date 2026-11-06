@@ -6,12 +6,12 @@ import java.util.List;
 /**
  * Class for Adjacency Matrix.
  */
-public class AdjMatrix implements Graph {
-    private final List<String> vertices = new ArrayList<>();
+public class AdjMatrix<T> implements Graph<T> {
+    private final List<T> vertices = new ArrayList<>();
     private final List<List<Boolean>> matrix = new ArrayList<>();
 
     @Override
-    public void addVertex(String v) {
+    public void addVertex(T v) {
         if (vertices.contains(v)) {
             return;
         }
@@ -32,7 +32,7 @@ public class AdjMatrix implements Graph {
     }
 
     @Override
-    public void rmvVertex(String v) {
+    public void rmvVertex(T v) {
         int index = vertices.indexOf(v);
 
         if (index == -1) {
@@ -48,7 +48,7 @@ public class AdjMatrix implements Graph {
     }
 
     @Override
-    public void addEdge(String src, String dst) {
+    public void addEdge(T src, T dst) {
         int srcIndex = vertices.indexOf(src);
         int dstIndex = vertices.indexOf(dst);
 
@@ -62,7 +62,7 @@ public class AdjMatrix implements Graph {
     }
 
     @Override
-    public void rmvEdge(String src, String dst) {
+    public void rmvEdge(T src, T dst) {
         int srcIndex = vertices.indexOf(src);
         int dstIndex = vertices.indexOf(dst);
 
@@ -74,7 +74,7 @@ public class AdjMatrix implements Graph {
     }
 
     @Override
-    public List<String> getNeighbors(String v) {
+    public List<T> getNeighbors(T v) {
         int index = vertices.indexOf(v);
 
         if (index == -1) {
@@ -83,7 +83,7 @@ public class AdjMatrix implements Graph {
             );
         }
 
-        List<String> neighbors = new ArrayList<>();
+        List<T> neighbors = new ArrayList<>();
 
         for (int i = 0; i < vertices.size(); i++) {
             if (matrix.get(index).get(i)) {
@@ -95,7 +95,7 @@ public class AdjMatrix implements Graph {
     }
 
     @Override
-    public List<String> getVertices() {
+    public List<T> getVertices() {
         return new ArrayList<>(vertices);
     }
 

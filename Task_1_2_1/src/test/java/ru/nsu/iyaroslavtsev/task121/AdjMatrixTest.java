@@ -1,36 +1,59 @@
 package ru.nsu.iyaroslavtsev.task121;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class AdjMatrixTest {
 
     @Test
-    void addVertex() {
-        Graph graph = new AdjMatrix();
+    void addVertexAndGetVertices() {
+        Graph<String> graph = new AdjMatrix<>();
 
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("A");
 
-        assertEquals(2, graph.getVertices().size());
+        assertEquals(Set.of("A", "B"), new HashSet<>(graph.getVertices()));
     }
 
     @Test
-    void addAndRemoveEdge() {
-        Graph graph = new AdjMatrix();
+    void addEdgeAndGetNeighbors() {
+        Graph<String> graph = new AdjMatrix<>();
         graph.addVertex("A");
         graph.addVertex("B");
+        graph.addVertex("C");
 
         graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("A", "B");
 
-        assertEquals(List.of("B"), graph.getNeighbors("A"));
+        assertEquals(List.of("B", "C"), graph.getNeighbors("A"));
+        assertTrue(graph.getNeighbors("B").isEmpty());
+    }
+
+    @Test
+    void addEdgeThrowsWhenVertexDoesNotExist() {
+        Graph<String> graph = new AdjMatrix<>();
+        graph.addVertex("A");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> graph.addEdge("A", "B"));
+        assertThrows(IllegalArgumentException.class,
+                () -> graph.addEdge("B", "A"));
+    }
+
+    @Test
+    void removeEdge() {
+        Graph<String> graph = new AdjMatrix<>();
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addEdge("A", "B");
 
         graph.rmvEdge("A", "B");
 
@@ -38,65 +61,57 @@ class AdjMatrixTest {
     }
 
     @Test
-    void removeVertexRemovesItsEdges() {
-        Graph graph = new AdjMatrix();
+    void removeVertexKeepsMatrixConsistent() {
+        Graph<String> graph = new AdjMatrix<>();
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("C");
-
         graph.addEdge("A", "B");
         graph.addEdge("B", "C");
         graph.addEdge("A", "C");
 
         graph.rmvVertex("B");
 
-        assertFalse(graph.getVertices().contains("B"));
+        assertEquals(Set.of("A", "C"), new HashSet<>(graph.getVertices()));
         assertEquals(List.of("C"), graph.getNeighbors("A"));
         assertTrue(graph.getNeighbors("C").isEmpty());
+        assertThrows(IllegalArgumentException.class,
+                () -> graph.getNeighbors("B"));
     }
 
     @Test
-    void removeUnknownVertexDoesNothing() {
-        Graph graph = new AdjMatrix();
-        graph.addVertex("A");
-
-        assertDoesNotThrow(() -> graph.rmvVertex("X"));
-        assertEquals(List.of("A"), graph.getVertices());
-    }
-
-    @Test
-    void addEdgeWithUnknownVertexThrowsException() {
-        Graph graph = new AdjMatrix();
-        graph.addVertex("A");
-
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> graph.addEdge("A", "B")
-        );
-
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> graph.addEdge("B", "A")
-        );
-    }
-
-    @Test
-    void removeEdgeWithUnknownVertexDoesNothing() {
-        Graph graph = new AdjMatrix();
+    void addingVertexAfterEdgesKeepsMatrixConsistent() {
+        Graph<String> graph = new AdjMatrix<>();
         graph.addVertex("A");
         graph.addVertex("B");
+        graph.addEdge("A", "B");
+        graph.addVertex("C");
+        graph.addEdge("C", "A");
 
-        assertDoesNotThrow(() -> graph.rmvEdge("X", "B"));
-        assertDoesNotThrow(() -> graph.rmvEdge("A", "X"));
+        assertEquals(List.of("B"), graph.getNeighbors("A"));
+        assertEquals(List.of("A"), graph.getNeighbors("C"));
     }
 
     @Test
-    void getNeighborsOfUnknownVertexThrowsException() {
-        Graph graph = new AdjMatrix();
+    void getNeighborsReturnsCopy() {
+        Graph<String> graph = new AdjMatrix<>();
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addEdge("A", "B");
 
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> graph.getNeighbors("X")
-        );
+        List<String> neighbors = graph.getNeighbors("A");
+        neighbors.clear();
+
+        assertEquals(List.of("B"), graph.getNeighbors("A"));
+    }
+
+    @Test
+    void supportsIntegerVertices() {
+        Graph<Integer> graph = new AdjMatrix<>();
+        graph.addVertex(10);
+        graph.addVertex(20);
+        graph.addEdge(10, 20);
+
+        assertEquals(List.of(20), graph.getNeighbors(10));
     }
 }
