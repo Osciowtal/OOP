@@ -31,9 +31,9 @@ public class Main {
                 throw new IOException("File is empty.");
             }
 
-            vertex_t vrtxType;
+            VertexType vrtxType;
             try {
-                vrtxType = vertex_t.valueOf(
+                vrtxType = VertexType.valueOf(
                         strVrtxType.trim().toUpperCase()
                 );
             } catch (IllegalArgumentException e) {
@@ -49,13 +49,13 @@ public class Main {
             switch (vrtxType) {
                 case STRING: {
                     Graph<String> graph = GraphCreator.create(graphRepresentation);
-                    Reader.read(buffReadr, graph, vertexParse::parseString);
+                    Reader.read(buffReadr, graph, VertexParse::parseString);
                     run(graph);
                     break;
                 }
                 case INTEGER: {
                     Graph<Integer> graph = GraphCreator.create(graphRepresentation);
-                    Reader.read(buffReadr, graph, vertexParse::parseInteger);
+                    Reader.read(buffReadr, graph, VertexParse::parseInteger);
                     run(graph);
                     break;
                 }
@@ -76,9 +76,9 @@ public class Main {
         for (T v : graph.getVertices()) {
             graphTwin.addVertex(v);
         }
-        for (T vSrc : graph.getVertices()) {
-            for (T vDst : graph.getNeighbors(vSrc)) {
-                graphTwin.addEdge(vSrc, vDst);
+        for (T vsrc : graph.getVertices()) {
+            for (T vdst : graph.getNeighbors(vsrc)) {
+                graphTwin.addEdge(vsrc, vdst);
             }
         }
 

@@ -6,25 +6,25 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-class vertex_tTest {
+class VertexTypeTest {
 
     @Test
     void containsSupportedTypes() {
         assertArrayEquals(
-                new vertex_t[]{vertex_t.STRING, vertex_t.INTEGER},
-                vertex_t.values()
+                new VertexType[]{VertexType.STRING, VertexType.INTEGER},
+                VertexType.values()
         );
     }
 
     @Test
     void valueOfReturnsExpectedType() {
-        assertEquals(vertex_t.STRING, vertex_t.valueOf("STRING"));
-        assertEquals(vertex_t.INTEGER, vertex_t.valueOf("INTEGER"));
+        assertEquals(VertexType.STRING, VertexType.valueOf("STRING"));
+        assertEquals(VertexType.INTEGER, VertexType.valueOf("INTEGER"));
     }
 
     @Test
     void valueOfThrowsForUnknownType() {
         assertThrows(IllegalArgumentException.class,
-                () -> vertex_t.valueOf("FLOAT"));
+                () -> VertexType.valueOf("FLOAT"));
     }
 }

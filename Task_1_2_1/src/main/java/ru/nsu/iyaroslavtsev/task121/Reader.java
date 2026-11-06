@@ -17,7 +17,10 @@ public class Reader {
      * @param parser the function for parsing vertices
      * @throws IOException if the file format is invalid
      */
-    public static <T> void read(BufferedReader reader, Graph<T> graph, Function<String, T> parser) throws IOException {
+    public static <T> void read(
+            BufferedReader reader,
+            Graph<T> graph,
+            Function<String, T> parser) throws IOException {
 
         String verts = reader.readLine();
 

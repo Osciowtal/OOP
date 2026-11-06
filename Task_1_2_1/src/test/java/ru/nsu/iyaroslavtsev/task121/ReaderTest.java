@@ -25,7 +25,7 @@ class ReaderTest {
                 "A B C\nA B\nB C\n"
         );
 
-        Reader.read(reader, graph, vertexParse::parseString);
+        Reader.read(reader, graph, VertexParse::parseString);
 
         assertEquals(List.of("B"), graph.getNeighbors("A"));
         assertEquals(List.of("C"), graph.getNeighbors("B"));
@@ -40,7 +40,7 @@ class ReaderTest {
                 "10 20 30\n10 20\n20 30\n"
         );
 
-        Reader.read(reader, graph, vertexParse::parseInteger);
+        Reader.read(reader, graph, VertexParse::parseInteger);
 
         assertEquals(List.of(10, 20, 30), graph.getVertices());
         assertEquals(List.of(20), graph.getNeighbors(10));
@@ -55,7 +55,7 @@ class ReaderTest {
                 "A B\n\nA B\n   \n"
         );
 
-        Reader.read(reader, graph, vertexParse::parseString);
+        Reader.read(reader, graph, VertexParse::parseString);
 
         assertEquals(List.of("B"), graph.getNeighbors("A"));
     }
@@ -66,7 +66,7 @@ class ReaderTest {
 
         BufferedReader reader = readerFor("   \n");
 
-        Reader.read(reader, graph, vertexParse::parseString);
+        Reader.read(reader, graph, VertexParse::parseString);
 
         assertTrue(graph.getVertices().isEmpty());
     }
@@ -78,7 +78,7 @@ class ReaderTest {
         BufferedReader reader = readerFor("");
 
         assertThrows(IOException.class,
-                () -> Reader.read(reader, graph, vertexParse::parseString));
+                () -> Reader.read(reader, graph, VertexParse::parseString));
     }
 
     @Test
@@ -89,7 +89,7 @@ class ReaderTest {
 
         IOException exception = assertThrows(
                 IOException.class,
-                () -> Reader.read(reader, graph, vertexParse::parseInteger)
+                () -> Reader.read(reader, graph, VertexParse::parseInteger)
         );
 
         assertTrue(exception.getMessage().contains("Invalid vertex: ABC"));
@@ -104,7 +104,7 @@ class ReaderTest {
 
         IOException exception = assertThrows(
                 IOException.class,
-                () -> Reader.read(reader, graph, vertexParse::parseString)
+                () -> Reader.read(reader, graph, VertexParse::parseString)
         );
 
         assertTrue(exception.getMessage().contains("Invalid edge format"));
@@ -118,7 +118,7 @@ class ReaderTest {
 
         IOException exception = assertThrows(
                 IOException.class,
-                () -> Reader.read(reader, graph, vertexParse::parseInteger)
+                () -> Reader.read(reader, graph, VertexParse::parseInteger)
         );
 
         assertTrue(exception.getMessage().contains("Invalid edge"));
@@ -132,7 +132,7 @@ class ReaderTest {
 
         IOException exception = assertThrows(
                 IOException.class,
-                () -> Reader.read(reader, graph, vertexParse::parseString)
+                () -> Reader.read(reader, graph, VertexParse::parseString)
         );
 
         assertTrue(exception.getMessage().contains("unknown vertex"));

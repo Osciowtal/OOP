@@ -6,29 +6,29 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-class vertexParseTest {
+class VertexParseTest {
 
     @Test
     void parseStringReturnsOriginalValue() {
-        assertEquals("Vertex-A", vertexParse.parseString("Vertex-A"));
+        assertEquals("Vertex-A", VertexParse.parseString("Vertex-A"));
     }
 
     @Test
     void parseStringPreservesWhitespace() {
-        assertEquals(" A ", vertexParse.parseString(" A "));
+        assertEquals(" A ", VertexParse.parseString(" A "));
     }
 
     @Test
     void parseIntegerConvertsValue() {
-        assertEquals(123, vertexParse.parseInteger("123"));
-        assertEquals(-45, vertexParse.parseInteger("-45"));
+        assertEquals(123, VertexParse.parseInteger("123"));
+        assertEquals(-45, VertexParse.parseInteger("-45"));
     }
 
     @Test
     void parseIntegerThrowsForInvalidValue() {
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> vertexParse.parseInteger("ABC")
+                () -> VertexParse.parseInteger("ABC")
         );
 
         assertEquals("Invalid integer vertex: ABC", exception.getMessage());
