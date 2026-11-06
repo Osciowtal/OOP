@@ -62,11 +62,11 @@ loadScripts(document, 'script');</script>
 </li>
 <li><a href="#method-detail" tabindex="0">Method Details</a>
 <ol class="toc-list">
-<li><a href="#addVertex(java.lang.String)" tabindex="0">addVertex(String)</a></li>
-<li><a href="#rmvVertex(java.lang.String)" tabindex="0">rmvVertex(String)</a></li>
-<li><a href="#addEdge(java.lang.String,java.lang.String)" tabindex="0">addEdge(String, String)</a></li>
-<li><a href="#rmvEdge(java.lang.String,java.lang.String)" tabindex="0">rmvEdge(String, String)</a></li>
-<li><a href="#getNeighbors(java.lang.String)" tabindex="0">getNeighbors(String)</a></li>
+<li><a href="#addVertex(T)" tabindex="0">addVertex(T)</a></li>
+<li><a href="#rmvVertex(T)" tabindex="0">rmvVertex(T)</a></li>
+<li><a href="#addEdge(T,T)" tabindex="0">addEdge(T, T)</a></li>
+<li><a href="#rmvEdge(T,T)" tabindex="0">rmvEdge(T, T)</a></li>
+<li><a href="#getNeighbors(T)" tabindex="0">getNeighbors(T)</a></li>
 <li><a href="#getVertices()" tabindex="0">getVertices()</a></li>
 <li><a href="#equals(java.lang.Object)" tabindex="0">equals(Object)</a></li>
 <li><a href="#hashCode()" tabindex="0">hashCode()</a></li>
@@ -78,21 +78,21 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<h1 title="Class AdjList" class="title">Class AdjList</h1>
+<h1 title="Class AdjList" class="title">Class AdjList&lt;<span id="type-param-T">T</span>&gt;</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">ru.nsu.iyaroslavtsev.task121.AdjList</div>
+<div class="inheritance">ru.nsu.iyaroslavtsev.task121.AdjList&lt;T&gt;</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;T&gt;</code></dd>
 </dl>
 <hr>
 <div class="horizontal-scroll">
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AdjList</span>
+<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AdjList&lt;T&gt;</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></span></div>
+implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;T&gt;</span></div>
 <div class="block">Class for Adjacency List.</div>
 </div>
 </section>
@@ -123,30 +123,30 @@ implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addEdge(java.lang.String,java.lang.String)" class="member-name-link">addEdge</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;src,
- <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dst)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addEdge(T,T)" class="member-name-link">addEdge</a><wbr>(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;src,
+ <a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;dst)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVertex(java.lang.String)" class="member-name-link">addVertex</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;v)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVertex(T)" class="member-name-link">addVertex</a><wbr>(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;v)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbors(java.lang.String)" class="member-name-link">getNeighbors</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;v)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbors(T)" class="member-name-link">getNeighbors</a><wbr>(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;v)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rmvEdge(java.lang.String,java.lang.String)" class="member-name-link">rmvEdge</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;src,
- <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dst)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rmvEdge(T,T)" class="member-name-link">rmvEdge</a><wbr>(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;src,
+ <a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;dst)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rmvVertex(java.lang.String)" class="member-name-link">rmvVertex</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;v)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rmvVertex(T)" class="member-name-link">rmvVertex</a><wbr>(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;v)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -185,63 +185,63 @@ implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addVertex(java.lang.String)">
-<h3>addVertex</h3>
+<section class="detail" id="addVertex(T)">
+<h3 id="addVertex(java.lang.Object)">addVertex</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;v)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;v)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#addVertex(java.lang.String)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#addVertex(T)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
 </li>
 <li>
-<section class="detail" id="rmvVertex(java.lang.String)">
-<h3>rmvVertex</h3>
+<section class="detail" id="rmvVertex(T)">
+<h3 id="rmvVertex(java.lang.Object)">rmvVertex</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">rmvVertex</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;v)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">rmvVertex</span><wbr><span class="parameters">(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;v)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#rmvVertex(java.lang.String)">rmvVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#rmvVertex(T)">rmvVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
 </li>
 <li>
-<section class="detail" id="addEdge(java.lang.String,java.lang.String)">
-<h3>addEdge</h3>
+<section class="detail" id="addEdge(T,T)">
+<h3 id="addEdge(java.lang.Object,java.lang.Object)">addEdge</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;src,
- <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dst)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;src,
+ <a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;dst)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#addEdge(java.lang.String,java.lang.String)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#addEdge(T,T)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
 </li>
 <li>
-<section class="detail" id="rmvEdge(java.lang.String,java.lang.String)">
-<h3>rmvEdge</h3>
+<section class="detail" id="rmvEdge(T,T)">
+<h3 id="rmvEdge(java.lang.Object,java.lang.Object)">rmvEdge</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">rmvEdge</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;src,
- <a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;dst)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">rmvEdge</span><wbr><span class="parameters">(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;src,
+ <a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;dst)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#rmvEdge(java.lang.String,java.lang.String)">rmvEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#rmvEdge(T,T)">rmvEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
 </li>
 <li>
-<section class="detail" id="getNeighbors(java.lang.String)">
-<h3>getNeighbors</h3>
+<section class="detail" id="getNeighbors(T)">
+<h3 id="getNeighbors(java.lang.Object)">getNeighbors</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getNeighbors</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;v)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</span>&nbsp;<span class="element-name">getNeighbors</span><wbr><span class="parameters">(<a href="#type-param-T" title="type parameter in AdjList">T</a>&nbsp;v)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#getNeighbors(java.lang.String)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#getNeighbors(T)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -250,10 +250,10 @@ implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121
 <section class="detail" id="getVertices()">
 <h3>getVertices</h3>
 <div class="horizontal-scroll">
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 </dl>
 </div>
 </section>
@@ -265,7 +265,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">equals</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;obj)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#equals(java.lang.Object)">equals</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#equals(java.lang.Object)">equals</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 </dl>
@@ -279,7 +279,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">hashCode</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#hashCode()">hashCode</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#hashCode()">hashCode</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 </dl>
@@ -293,7 +293,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">toString</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="Graph.html#toString()">toString</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a></code></dd>
+<dd><code><a href="Graph.html#toString()">toString</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.iyaroslavtsev.task121">Graph</a>&lt;<a href="#type-param-T" title="type parameter in AdjList">T</a>&gt;</code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></dd>
 </dl>
